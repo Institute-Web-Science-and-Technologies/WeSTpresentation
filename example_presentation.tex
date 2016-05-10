@@ -1,0 +1,177 @@
+% Enable warnings about problematic code
+\RequirePackage[l2tabu, orthodox]{nag}
+
+\documentclass{WeSTpresentation}
+
+\newcommand*\mailto[1]{\href{mailto:#1}{\nolinkurl{#1}}}
+
+\title{An Example of a WeST-Presentation}
+\subtitle{Using the \texttt{WeSTpresentation} Class}
+\author{John Doe}
+\institute{
+  Institute for Web Science and Technologies\\
+  University of Koblenz-Landau\\
+  \texttt{\mailto{johndoe@uni-koblenz.de}}
+}
+\date{\today}
+
+% If you don't want your name resp. the date in the footline, uncomment this:
+%\renewcommand*\WeSTfootlineLeft{left footline content}
+%\renewcommand*\WeSTfootlineCenter{center footline content}
+
+% Set langauge of text.
+\setdefaultlanguage[
+  variant = american, % Use American instead of Britsh English.
+]{english}
+
+% Specify bib file location.
+\addbibresource{example_bibliography.bib}
+
+% Show section title frame at the start of each section.
+\AtBeginSection{%
+  \miniframesoff%
+  \begin{frame}[WeSTfancy]%
+    \sectionpage%
+  \end{frame}%
+  \miniframeson}
+
+% Show subsection title frame at the start of each subsection.
+\AtBeginSubsection{%
+  \miniframesoff%
+  \begin{frame}[WeSTfancy]%
+    \subsectionpage%
+  \end{frame}%
+  \miniframeson}
+
+% ==============================================================================
+% Document
+
+\begin{document}
+
+\begin{frame}[WeSTfancy]
+  \titlepage
+\end{frame}
+
+\newcommand*\WeSTheadline{} % Disable navigation bar for outline.
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+\let\WeSTheadline\relax % Re-enable navigation bar for outline.
+
+% ==============================================================================
+% Main Content
+
+\section{Introduction}
+
+\begin{frame}{Just Text}
+  This is just blind text\footnote{This is a footnote.}.
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Aliquam volutpat, leo ac malesuada malesuada, nulla sapien auctor neque, eu
+  euismod libero metus ac justo\footnote{Here comes another one.}.
+  Praesent ipsum sem, sollicitudin vel quam in, scelerisque mollis velit.
+  Sed eu dui vitae nisi auctor semper.
+  Mauris sed eleifend neque, in consequat massa.
+  Donec suscipit vestibulum purus dictum suscipit.
+  Praesent porta venenatis risus, non congue ante aliquet non.
+\end{frame}
+
+\begin{frame}{Some Items, with Bullets}
+  \begin{itemize}
+    \item Lorem ipsum
+    \item dolor sit amen,
+    \item consectetur adipiscing elit.
+    \item Aliquam volutpat, leo ac malesuada malesuada, nulla sapien auctor
+      neque, eu euismod libero metus ac justo.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Some Items, with Numbers}
+  \begin{enumerate}
+    \item Lorem ipsum
+    \item dolor sit amen,
+    \item consectetur adipiscing elit.
+    \item Aliquam volutpat, leo ac malesuada malesuada, nulla sapien auctor
+      neque, eu euismod libero metus ac justo.
+  \end{enumerate}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+
+\section{The Boring Section}
+
+\begin{frame}{There is no Largest Prime Number}{The Proof uses \emph{Reduction Ad Absurdum}.}
+  \begin{theorem}
+    There is no largest prime number.
+  \end{theorem}
+  \begin{proof}
+    \begin{enumerate}
+      \item<1-|alert@1> Suppose $p$ were the largest prime number.
+      \item<2-> Let $q$ be the product of the first $p$ numbers.
+      \item<3-> Then $q + 1$ is not divisible by any of them.
+      \item<1-> Thus $q + 1$ is also prime and greater than $p$.\qedhere
+    \end{enumerate}
+  \end{proof}
+\end{frame}
+
+\subsection{A Subsection}
+
+\begin{frame}{How to do References}
+  For this and this, see \textcite{DBLP:conf/leet/CheckowaySR10}.
+
+  \medskip
+  This statement is \emph{believed} because it has a reference
+  \parencite{DBLP:books/sp/Gratzer16}.
+\end{frame}
+
+\subsection{Another Subsection}
+
+\begin{frame}{A \enquote{Mathy} Slide}
+  You can have math inside a sentence.
+  For example, the \alert{pythagorean theroem}, which says $a^2 + b^2 = c^2$, is
+  very famous.
+
+  \medskip
+  But you can also have math in its own block.
+  For example, to calculate the \alert{harmonic mean} one has to look up this
+  formula:
+  \begin{equation*}
+    \bar x = n \cdot \left( \sum^n_{i=1} \frac{1}{x_i} \right)^{-1}
+  \end{equation*}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+
+\section{Conclusion}
+
+\begin{frame}{Conclusion}
+  \large
+  \begin{itemize}
+    \itemsep1.5em
+    \item Main takeaway
+    \item Second takeaway
+  \end{itemize}
+\end{frame}
+
+\miniframesoff % Don't show the thank you slide in navigation bar.
+\begin{frame}[WeSTfancy]{Thank you for your Attention!}
+  \begin{center}
+    \insertauthor
+  \end{center}
+\end{frame}
+\miniframeson % Show following slides in navigation bar again.
+
+% ==============================================================================
+% Appendix
+
+% The appendix is not visible in the outline or the navigation bar, unless you
+% get to it. Here you can put backup slides or your references.
+\appendix
+
+\section{References}
+
+\begin{frame}[allowframebreaks]{References}
+  \sloppy
+  \printbibliography[heading = none]
+\end{frame}
+
+\end{document}

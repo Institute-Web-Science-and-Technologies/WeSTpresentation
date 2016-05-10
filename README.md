@@ -35,9 +35,5 @@ Bugs:
 
 Additional Features:
 
-- Add some way to show the beginning of a subsection. In the meanwhile you can
-  help yourself with `\begin{frame}[plain]\subsectionpage\end{frame}` whenever
-  you would need one.
-- Support Beamer's Navigation Bars.
 - Support Beamer's Handout feature.
 - Support other latex engines (`pdftex`, etc).

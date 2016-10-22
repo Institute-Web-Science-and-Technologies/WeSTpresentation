@@ -60,7 +60,6 @@
   firstinits = true, % abbreviate first name of authors
   doi = false, % do not show doi
   isbn = false, % do not show isbn
-  url = false, % do not show url
   eprint = false, % do not show eprint
   urldate = long, % format of urldate field
 ]{biblatex}
@@ -278,6 +277,19 @@
 \setlength\bibitemsep{0.8em}
 % Indent after first line on bibliography entries
 \setlength\bibhang{1em}
+
+% Have URLs for specific entries.
+% see http://tex.stackexchange.com/a/152971/75225
+\DeclareBibliographyCategory{needsurl}
+\newcommand{\entryneedsurl}[1]{\addtocategory{needsurl}{#1}}
+\renewbibmacro*{url+urldate}{%
+  \ifcategory{needsurl}{
+    \printfield{url}%
+    \iffieldundef{urlyear}
+      {}
+      {\setunit*{\addspace}%
+       \printurldate}}
+    {}}
 
 % Navigation Bar ---------------------------------------------------------------
 

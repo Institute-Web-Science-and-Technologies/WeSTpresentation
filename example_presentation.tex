@@ -48,6 +48,7 @@
 
 \begin{document}
 
+\miniframesoff % Don't show Titlepage and ToC in navigation bar.
 \begin{frame}[WeSTfancy]
   \titlepage
 \end{frame}
@@ -57,6 +58,7 @@
   \tableofcontents
 \end{frame}
 \let\WeSTheadline\relax % Re-enable navigation bar for outline.
+\miniframeson % Show following slides in navigation bar again.
 
 % ==============================================================================
 % Main Content
@@ -159,6 +161,7 @@
   \end{center}
 \end{frame}
 \miniframeson % Show following slides in navigation bar again.
+
 
 % ==============================================================================
 % Appendix

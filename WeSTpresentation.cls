@@ -57,12 +57,19 @@
   maxbibnames = 10, % max number of names in bibliography
   maxcitenames = 2, % max number of names in text cite
   uniquelist = minyear, % only add more authors if year is not unique
-  firstinits = true, % abbreviate first name of authors
+  labeldateparts = true,
+  uniquename = init,
+  giveninits = true, % abbreviate first name of authors
   doi = false, % do not show doi
   isbn = false, % do not show isbn
   eprint = false, % do not show eprint
   urldate = long, % format of urldate field
 ]{biblatex}
+
+\RequirePackage{silence, lmodern}
+% Filter warnings issued by biblatex starting with "Patching footnotes failed"
+% see https://tex.stackexchange.com/a/202994/75225
+\WarningFilter{biblatex}{Patching footnotes failed}
 
 % ==============================================================================
 % Theme
@@ -93,7 +100,7 @@
 \setsansfont{TeX Gyre Heros} % Sans-serif
 
 \setbeamerfont{title}{series = \bfseries} % Make title of titlepage bold.
-\setbeamerfont{subtitle}{series* = {}} % Make title of titlepage bold.
+\setbeamerfont{subtitle}{series = {}} % Make subtitle of titlepage normal.
 \setbeamerfont{frametitle}{series = \bfseries} % Make titles of slides bold.
 \setbeamerfont{footline}{size = \tiny} % Font size of footline.
 \setbeamerfont{author in head/foot}{parent = footline}
@@ -262,10 +269,12 @@
 % Bibliography -----------------------------------------------------------------
 
 % Last names before first names: http://tex.stackexchange.com/q/113573
-\DeclareNameAlias{sortname}{last-first}
-\DeclareNameAlias{default}{last-first}
+\DeclareNameAlias{sortname}{family-given}
+\DeclareNameAlias{default}{family-given}
 
 % Author lastnames in small caps, but only in bibliography not in the citation.
+% Note: last-first renamed to family-given to reflect updated BibLaTeX
+% terminology.
 \AtBeginBibliography{
   \renewcommand\mkbibnamelast[1]{\textsc{#1}}
 }
